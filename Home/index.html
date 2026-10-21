@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolitiView India — Political Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#home"><span class="brand-mark">♜</span><span><strong>Politi<span>View</span></strong><small>AI-Powered Political Intelligence</small></span></a>
+    <nav class="main-nav">
+      <a class="active" href="#home"><span>⌂</span>Home</a>
+      <a href="#developments"><span>◉</span>Explore</a>
+      <a href="#perspective"><span>◉</span>Perspective Lens</a>
+      <a href="#region"><span>⌖</span>My Region</a>
+      <a href="#recommended"><span>⚑</span>Saved Topics</a>
+    </nav>
+    <div class="nav-label">MY TOPICS</div>
+    <nav class="topic-nav">
+      <a href="#region"><span>▣</span>State & Local Politics</a>
+      <a href="#developments"><span>♙</span>Elections</a>
+      <a href="#developments"><span>▣</span>Education</a>
+      <a href="#developments"><span>▣</span>Infrastructure</a>
+      <a href="#developments"><span>▣</span>National Politics</a>
+      <a href="#developments"><span>▣</span>Local News</a>
+    </nav>
+    <nav class="bottom-nav"><a href="#profile"><span>●</span>Profile</a><a href="#settings"><span>⚙</span>Settings</a></nav>
+  </aside>
+
+  <main class="main-area" id="home">
+    <header class="topbar">
+      <label class="search"><span>⌕</span><input id="searchInput" placeholder="Search Indian issues, leaders, states, districts or topics..." /></label>
+      <div class="top-actions"><button class="icon-btn" aria-label="Notifications">♧<i></i></button><button class="avatar">E</button><strong>Emamul</strong><span>⌄</span></div>
+    </header>
+
+    <section class="welcome-row">
+      <div><h1>Good evening, Emamul <span class="wave">👋</span></h1><p>Political developments across India, tailored to your region.</p></div>
+      <div class="weather-row">
+        <label class="location-pill"><span class="pin">●</span><select id="regionSelect" aria-label="Choose an Indian state or union territory"></select></label>
+        <div class="weather-card"><span class="sun">☀</span><div><b id="weatherTemp">26°C</b><small id="weatherPlace">Pune, Maharashtra</small></div><div class="date"><span id="dateText">India</span><b id="timeText">Local region</b></div></div>
+      </div>
+    </section>
+
+    <section class="hero-grid">
+      <article class="hero-story">
+        <div class="priority">HIGH PRIORITY</div>
+        <div class="hero-content"><h2 id="heroTitle">Election Commission announces new voter roll guidelines</h2>
+          <div class="meta light"><span id="heroRegion">⌖ India</span><span>◷ 5 hours ago</span><span>▱ Elections</span></div>
+          <p id="heroDescription">Election-related updates can affect voter registration, electoral rolls and participation. Check official notices for deadlines and eligibility.</p>
+          <div class="hero-buttons"><button class="primary" id="understandBtn">Understand in 2 minutes <span>→</span></button><button class="outline" id="detailsBtn">View Details</button></div>
+        </div>
+      </article>
+
+      <article class="panel why-panel"><h3>Why this matters to you? <span class="info">ⓘ</span></h3>
+        <div class="score-row"><span class="score-icon orange">✦</span><div class="score-copy"><b>High geographic relevance</b><small>Connected to your selected Indian region.</small></div><div class="meter"><i style="width:88%"></i></div><b class="score">88</b></div>
+        <div class="score-row"><span class="score-icon blue">♟</span><div class="score-copy"><b>High civic importance</b><small>May affect public services and participation.</small></div><div class="meter"><i style="width:85%"></i></div><b class="score">85</b></div>
+        <div class="score-row"><span class="score-icon red">◴</span><div class="score-copy"><b>Time sensitive</b><small>Verify official dates and announcements.</small></div><div class="meter"><i style="width:78%"></i></div><b class="score">78</b></div>
+        <div class="score-row"><span class="score-icon green">♡</span><div class="score-copy"><b>Matches your interests</b><small>Based on selected topics and location.</small></div><div class="meter"><i style="width:72%"></i></div><b class="score">72</b></div>
+      </article>
+
+      <article class="panel snapshot"><div class="panel-heading"><h3>Your Political Snapshot</h3><select id="snapshotPeriod" aria-label="Snapshot period"><option>This Week</option><option>This Month</option><option>This Year</option></select></div>
+        <div class="snapshot-row"><span class="snap-icon blue">♟</span><div><b>12</b><small>Important developments</small></div><strong class="up">↑ 3</strong></div>
+        <div class="snapshot-row"><span class="snap-icon red">♨</span><div><b>4</b><small>High priority issues</small></div><strong class="up">↑ 1</strong></div>
+        <div class="snapshot-row"><span class="snap-icon purple">●</span><div><b>3</b><small>In your region</small></div><strong class="up">↑ 2</strong></div>
+        <div class="snapshot-row"><span class="snap-icon green">▮</span><div><b>5</b><small>From your saved topics</small></div><strong class="up">↑ 1</strong></div>
+      </article>
+    </section>
+
+    <section class="middle-grid">
+      <article class="panel developments" id="developments"><div class="panel-heading"><h3>Top Political Developments in India</h3><a href="#recommended" class="view-all">View All →</a></div><div class="story-cards">
+        <article class="mini-story"><div class="thumb voter"><span class="tag high">HIGH</span></div><h4>Voter roll revision and electoral list updates</h4><p id="cardRegion1">India <span>•</span> 5 hours ago</p><span class="topic-tag lavender">Elections</span><button class="save" aria-label="Save story">♧</button></article>
+        <article class="mini-story"><div class="thumb metro"><span class="tag medium">MEDIUM</span></div><h4>Urban metro and public transport expansion</h4><p class="dynamic-region">Maharashtra <span>•</span> 12 hours ago</p><span class="topic-tag blue-tag">Infrastructure</span><button class="save" aria-label="Save story">♧</button></article>
+        <article class="mini-story"><div class="thumb education"><span class="tag medium">MEDIUM</span></div><h4>Education policy and public school developments</h4><p class="dynamic-region">India <span>•</span> 17 hours ago</p><span class="topic-tag gray-tag">Education</span><button class="save" aria-label="Save story">♧</button></article>
+        <article class="mini-story"><div class="thumb parliament"><span class="tag low">LOW</span></div><h4>Parliament debate on governance and data protection</h4><p>India <span>•</span> 1 day ago</p><span class="topic-tag blue-tag">Governance</span><button class="save" aria-label="Save story">♧</button></article>
+      </div><p class="disclaimer">Illustrative sample headlines — connect verified news sources before publishing.</p></article>
+      <article class="panel regional-activity" id="region"><div class="panel-heading"><h3>Political Activity in Your Region</h3><a href="#region" id="resetMap">Reset Map ↻</a></div><div class="map-area"><div id="indiaMap" aria-label="Interactive map of Indian states"></div><div class="map-select-wrap"><label for="mapRegionSelect">Explore region</label><select id="mapRegionSelect"></select></div><div class="map-tooltip" id="mapTooltip"><b id="mapPlace">Pune, Maharashtra</b><span>Regional overview</span><span>Illustrative activity indicators</span></div><div class="legend"><span><i class="high-dot"></i>High activity</span><span><i class="med-dot"></i>Moderate</span><span><i class="low-dot"></i>Low activity</span></div><div class="map-status" id="mapStatus">Loading India state boundaries…</div></div></article>
+    </section>
+
+    <section class="bottom-grid">
+      <article class="panel recommendations" id="recommended"><div class="panel-heading"><div><h3>Recommended For You</h3><p>Based on your interests and selected region</p></div><a href="#recommended">View All →</a></div>
+        <div class="recommend-row"><div class="recommend-img court"></div><div class="recommend-copy"><b>Supreme Court hearings and important judgments</b><p>India <span>•</span> 8 hours ago <em>Judiciary</em></p></div><button class="save" aria-label="Save recommendation">♧</button></div>
+        <div class="recommend-row"><div class="recommend-img water"></div><div class="recommend-copy"><b>Water policy and drought preparedness</b><p class="dynamic-region">Maharashtra <span>•</span> 14 hours ago <em class="green-label">Environment</em></p></div><button class="save" aria-label="Save recommendation">♧</button></div>
+        <div class="recommend-row"><div class="recommend-img meeting"></div><div class="recommend-copy"><b>Local body elections and civic administration</b><p class="dynamic-region">Maharashtra <span>•</span> 1 day ago <em>Elections</em></p></div><button class="save" aria-label="Save recommendation">♧</button></div>
+      </article>
+      <article class="panel geography"><div class="panel-heading"><div><h3>Explore by Geography</h3><p>Drill down across Indian regions</p></div><a class="arrow-link" href="#region">→</a></div><div class="geo-content"><div class="geo-list"><button data-region="India">● <span>India</span></button><button data-region="Maharashtra">● <span>Maharashtra</span></button><button data-region="Pune">● <span>Pune</span></button><button data-region="Delhi">● <span>Delhi</span></button><button data-region="Karnataka">● <span>Karnataka</span></button></div><div class="pale-map"><span>INDIA</span><i></i></div></div></article>
+      <div class="right-stack"><article class="panel learning"><div class="panel-heading"><div><h3>Continue Your Learning</h3><p>Understand public issues step by step</p></div><a href="#learning">View All →</a></div>
+        <div class="lesson" id="learning"><div class="lesson-img lesson-one"><span>▶</span></div><div class="lesson-info"><b>How India's electoral process works</b><div class="progress"><i style="width:40%"></i></div><small><em>10-Minute Mode</em><span>12 min left</span><b>40%</b></small></div></div>
+        <div class="lesson"><div class="lesson-img lesson-two"><span>▶</span></div><div class="lesson-info"><b>Understanding public infrastructure projects</b><div class="progress"><i style="width:70%"></i></div><small><em class="purple-label">1-Hour Mode</em><span>25 min left</span><b>70%</b></small></div></div>
+      </article>
+      <article class="perspective" id="perspective"><span class="people">♧</span><div><b>See Multiple Perspectives</b><p>Compare how stakeholders view the same public issue.</p></div><button id="perspectiveBtn">Open Perspective Lens →</button></article></div>
+    </section>
+    <footer class="footer-note">PolitiView India · Prototype data is illustrative and not live political reporting.</footer>
+    <div id="toast" role="status" class="toast"></div>
+  </main>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

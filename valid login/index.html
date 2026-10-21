@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0865f5">
+<title>Log in | PolitiView</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="page">
+  <section class="visual-panel" aria-label="About PolitiView">
+    <a class="brand" href="index.html" aria-label="PolitiView home">
+      <span class="brand-mark" aria-hidden="true">♜</span>
+      <span><strong>Politi<span>View</span></strong><small>AI-Powered Political Intelligence</small></span>
+    </a>
+    <div class="visual-copy">
+      <span class="eyebrow"><span class="pulse"></span> POLITICAL INTELLIGENCE, MADE CLEAR</span>
+      <h1>Understand politics.<br><span>See the bigger picture.</span></h1>
+      <p>Reliable political developments, organized by geography and tailored to what matters to you.</p>
+      <div class="feature-list">
+        <div><span class="feature-icon">⌖</span><span><b>Relevant to your region</b><small>Explore information from India, state to ward.</small></span></div>
+        <div><span class="feature-icon">◈</span><span><b>Multiple perspectives</b><small>Understand issues from different viewpoints.</small></span></div>
+        <div><span class="feature-icon">◷</span><span><b>Knowledge on your time</b><small>Quick summaries or a deeper analysis.</small></span></div>
+      </div>
+    </div>
+    <div class="visual-footer"><span>INDIA-FOCUSED</span><span>•</span><span>GEOGRAPHY-BASED</span><span>•</span><span>TRANSPARENT</span></div>
+  </section>
+  <section class="form-panel">
+    <div class="mobile-brand">
+      <span class="brand-mark">♜</span><strong>Politi<span>View</span></strong>
+    </div>
+    <div class="login-card">
+      <div class="card-heading">
+        <div class="welcome-icon">↗</div>
+        <h2>Welcome back</h2>
+        <p>Log in to continue to your PolitiView account.</p>
+      </div>
+      <div class="method-tabs" role="tablist" aria-label="Choose login method">
+        <button type="button" class="method-tab active" id="emailTab" role="tab" aria-selected="true">Email</button>
+        <button type="button" class="method-tab" id="phoneTab" role="tab" aria-selected="false">Indian phone number</button>
+      </div>
+
+      <form id="emailForm" class="auth-form" novalidate>
+        <label for="email">Email address</label>
+        <div class="input-wrap"><span aria-hidden="true">✉</span><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+        <p class="field-error" id="emailError" aria-live="polite"></p>
+        <div class="password-label"><label for="password">Password</label><button type="button" id="forgotPassword" class="text-button">Forgot password?</button></div>
+        <div class="input-wrap"><span aria-hidden="true">♙</span><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required minlength="8"><button type="button" id="togglePassword" class="reveal" aria-label="Show password">Show</button></div>
+        <p class="field-error" id="passwordError" aria-live="polite"></p>
+        <button type="submit" class="primary-button" id="emailSubmit">Log in <span>→</span></button>
+      </form>
+
+      <form id="phoneForm" class="auth-form" hidden novalidate>
+        <label for="phone">Indian mobile number</label>
+        <div class="phone-input">
+          <span class="country-code"><span aria-hidden="true">🇮🇳</span> +91 <span>⌄</span></span>
+          <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="98765 43210" maxlength="10" aria-describedby="phoneHint" required>
+        </div>
+        <p class="field-hint" id="phoneHint">Enter your 10-digit Indian mobile number. Do not include +91.</p>
+        <p class="field-error" id="phoneError" aria-live="polite"></p>
+        <div id="otpSection" hidden>
+          <label for="otp">Verification code</label>
+          <input id="otp" class="otp-input" name="otp" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="Enter 6-digit OTP" maxlength="6">
+          <p class="field-hint" id="otpHint">Enter the code sent to your mobile number.</p>
+          <p class="field-error" id="otpError" aria-live="polite"></p>
+        </div>
+        <button type="submit" class="primary-button" id="phoneSubmit">Send verification code <span>→</span></button>
+        <button type="button" class="text-button change-number" id="changeNumber" hidden>Change phone number</button>
+      </form>
+
+      <div class="divider"><span>SECURE ACCESS</span></div>
+      <p class="terms">By continuing, you agree to our <a href="#" data-info="Terms of Service">Terms of Service</a> and <a href="#" data-info="Privacy Policy">Privacy Policy</a>.</p>
+      <p class="signup">New to PolitiView? <a href="#" id="createAccount">Create an account</a></p>
+      <div class="security-note"><span>♢</span><p><b>Your account, your control</b><small>Never share your password or verification code with anyone.</small></p></div>
+    </div>
+    <footer class="form-footer">© <span id="year"></span> PolitiView · Built for informed citizens in India</footer>
+  </section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

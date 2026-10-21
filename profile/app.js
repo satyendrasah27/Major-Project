@@ -1,0 +1,44 @@
+const toast=document.getElementById('toast');let toastTimer;
+function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}
+const regions=[
+"Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli and Daman and Diu","Delhi","Jammu and Kashmir","Ladakh","Lakshadweep","Puducherry"
+];
+const stateSelect=document.getElementById('stateSelect'),districtSelect=document.getElementById('districtSelect'),regionAddSelect=document.getElementById('regionAddSelect');
+regions.forEach(region=>{for(const select of [stateSelect,regionAddSelect]){const option=document.createElement('option');option.value=region;option.textContent=region;select.appendChild(option)}});
+stateSelect.value='Maharashtra';regionAddSelect.insertAdjacentHTML('afterbegin','<option value="">Choose region to add...</option>');regionAddSelect.value='';
+const districts={
+"Maharashtra":["Pune","Mumbai City","Mumbai Suburban","Nagpur","Nashik","Thane","Kolhapur","Satara","Solapur","Aurangabad / Chhatrapati Sambhajinagar","Other / Not sure"],
+"Delhi":["New Delhi","Central Delhi","East Delhi","North Delhi","North East Delhi","North West Delhi","Shahdara","South Delhi","South East Delhi","South West Delhi","West Delhi"],
+"Karnataka":["Bengaluru Urban","Bengaluru Rural","Mysuru","Mangaluru / Dakshina Kannada","Belagavi","Hubballi-Dharwad","Other / Not sure"],
+"West Bengal":["Kolkata","Howrah","Darjeeling","North 24 Parganas","South 24 Parganas","Other / Not sure"],
+"Uttar Pradesh":["Lucknow","Varanasi","Prayagraj","Kanpur Nagar","Gautam Buddha Nagar","Agra","Other / Not sure"],
+"Bihar":["Patna","Gaya","Muzaffarpur","Bhagalpur","Darbhanga","Other / Not sure"],
+"Tamil Nadu":["Chennai","Coimbatore","Madurai","Tiruchirappalli","Salem","Other / Not sure"],
+"Telangana":["Hyderabad","Rangareddy","Warangal","Nizamabad","Other / Not sure"],
+"Gujarat":["Ahmedabad","Surat","Vadodara","Rajkot","Gandhinagar","Other / Not sure"],
+"Rajasthan":["Jaipur","Jodhpur","Udaipur","Kota","Ajmer","Other / Not sure"]
+};
+function updateDistricts(){const state=stateSelect.value;const list=districts[state]||['District HQ / Capital','Other / Not sure'];districtSelect.innerHTML='';list.forEach(name=>{const option=document.createElement('option');option.value=name;option.textContent=name;districtSelect.appendChild(option)});updateMapLabel()}
+function updateMapLabel(){const district=districtSelect.value||'Region';document.getElementById('mapLabel').textContent='● '+(district==='Pune'?'Pune':district)}
+stateSelect.addEventListener('change',()=>{updateDistricts();notify(`Primary state updated to ${stateSelect.value} (not saved yet)`)});districtSelect.addEventListener('change',updateMapLabel);updateDistricts();
+document.getElementById('saveProfile').addEventListener('click',()=>{const name=document.getElementById('fullName').value.trim();if(!name){notify('Please enter your name before saving.');return}document.getElementById('avatarLetter').textContent=name[0].toUpperCase();notify('Profile changes validated. Connect a backend to save permanently.')});
+document.querySelectorAll('.edit-field').forEach(button=>button.addEventListener('click',()=>{const input=document.getElementById(button.dataset.field);input.focus();input.select()}));
+document.getElementById('changePhoto').addEventListener('click',()=>document.getElementById('photoInput').click());
+document.getElementById('photoInput').addEventListener('change',event=>{const file=event.target.files[0];if(!file)return;if(!file.type.startsWith('image/')){notify('Choose an image file.');return}const reader=new FileReader();reader.onload=()=>{const avatar=document.getElementById('avatarLetter');avatar.textContent='';avatar.style.backgroundImage=`url("${reader.result}")`;notify('Profile photo preview updated. Save it through your account backend to keep it.')};reader.readAsDataURL(file)});
+document.getElementById('detectLocation').addEventListener('click',()=>{if(!navigator.geolocation){notify('Geolocation is not supported by this browser.');return}notify('Requesting browser location permission…');navigator.geolocation.getCurrentPosition(position=>{const {latitude,longitude}=position.coords;notify(`Location detected (${latitude.toFixed(2)}, ${longitude.toFixed(2)}). Reverse geocoding is not connected.`)},error=>notify(error.code===1?'Location permission was denied.': 'Could not detect your location. Choose a region manually.'),{timeout:8000,maximumAge:60000})});
+document.getElementById('changeOnMap').addEventListener('click',()=>{notify('Map selection demo. Choose your state and district from the dropdowns.');document.getElementById('stateSelect').focus()});
+document.querySelectorAll('.interest').forEach(button=>button.addEventListener('click',()=>{button.classList.toggle('selected');}));
+document.getElementById('saveInterests').addEventListener('click',()=>{const selected=[...document.querySelectorAll('.interest.selected')].map(button=>button.dataset.interest);notify(selected.length?`Selected interests: ${selected.join(', ')}. Connect backend to save.`:'No interests selected. Connect backend to save.')});
+document.querySelectorAll('.switch input').forEach(input=>input.addEventListener('change',()=>notify(`${input.closest('.toggle-item').querySelector('b').textContent}: ${input.checked?'On':'Off'}`)));
+document.querySelectorAll('.knowledge-card').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.knowledge-card').forEach(card=>card.classList.toggle('selected',card===button));notify(`Default knowledge mode set to ${button.dataset.mode} (not saved permanently).`)}));
+function addRegion(region){if(!region)return;const chips=document.getElementById('regionChips');if([...chips.querySelectorAll('button')].some(button=>button.dataset.region===region)){notify(`${region} is already in your geographic interests.`);return}const button=document.createElement('button');button.dataset.region=region;button.innerHTML=`${region} <b>×</b>`;button.addEventListener('click',()=>{button.remove();notify(`${region} removed from geographic interests.`)});chips.appendChild(button);notify(`${region} added to geographic interests.`)}
+document.querySelectorAll('#regionChips button').forEach(button=>button.addEventListener('click',()=>{button.remove();notify(`${button.dataset.region} removed from geographic interests.`)}));
+regionAddSelect.addEventListener('change',()=>{addRegion(regionAddSelect.value);regionAddSelect.value=''});
+document.getElementById('regionSearch').addEventListener('keydown',event=>{if(event.key==='Enter'){const query=event.target.value.trim();if(!query)return;const exact=regions.find(region=>region.toLowerCase()===query.toLowerCase());if(exact)addRegion(exact);else notify('For this demo, add a state or union territory from the dropdown.');event.target.value=''}});
+document.getElementById('manageRegions').addEventListener('click',()=>{regionAddSelect.focus();notify('Choose an Indian state or union territory to add.')});
+document.querySelectorAll('.bell').forEach(button=>button.addEventListener('click',()=>{button.classList.toggle('muted');notify(`Notifications ${button.classList.contains('muted')?'muted':'enabled'} for ${button.closest('.saved-topic').querySelector('b').textContent}.`)}));
+document.getElementById('viewSaved').addEventListener('click',()=>notify('Saved topics overview demo. Connect saved-topic data for a full list.'));
+document.querySelectorAll('.privacy-actions button,.account-actions button').forEach(button=>button.addEventListener('click',()=>{const action=button.dataset.action;if(action==='Delete My Data'){if(confirm('This prototype cannot delete account data. In a live product, this should open a verified deletion flow.'))notify('No data was deleted; backend integration is required.')}else notify(`${action}: account settings demo. Connect a secure backend to enable this action.`)}));
+document.getElementById('notifications').addEventListener('click',()=>notify('You have no new demo notifications.'));
+document.getElementById('globalSearch').addEventListener('keydown',event=>{if(event.key==='Enter'&&event.target.value.trim())notify(`Search demo: ${event.target.value.trim()}`)});
+document.querySelectorAll('.main-nav a,.topic-nav a,.bottom-nav a').forEach(link=>link.addEventListener('click',event=>{if(link.getAttribute('href')==='#'){event.preventDefault();notify(`${link.textContent.trim()} selected.`)}}));

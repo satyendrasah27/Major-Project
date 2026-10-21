@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PolitiView India — Profile & Preferences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">♜</span><span><strong>Politi<span>View</span></strong><small>AI-Powered Political Intelligence</small></span></a>
+    <nav class="main-nav">
+      <a href="#"><span>⌂</span>Home</a><a href="#"><span>◉</span>Explore</a><a href="#"><span>▤</span>Political Issues</a><a href="#"><span>◉</span>Perspective Lens</a><a href="#"><span>⌖</span>My Region</a><a href="#"><span>▥</span>Impact & Insights</a><a href="#"><span>⚑</span>Saved Topics</a>
+    </nav>
+    <div class="nav-label">MY TOPICS</div>
+    <nav class="topic-nav"><a href="#"><span>▣</span>Maharashtra</a><a href="#"><span>♙</span>Elections</a><a href="#"><span>▣</span>Education</a><a href="#"><span>▣</span>Infrastructure</a><a href="#"><span>▣</span>National Politics</a><a href="#"><span>▣</span>Local News</a></nav>
+    <nav class="bottom-nav"><a class="active" href="#profile"><span>♟</span>Profile</a><a href="#settings"><span>⚙</span>Settings</a></nav>
+  </aside>
+
+  <main class="main-area" id="profile">
+    <header class="topbar">
+      <label class="search"><span>⌕</span><input id="globalSearch" placeholder="Search issues, people, locations or topics..."></label>
+      <div class="top-actions"><button class="icon-btn" id="notifications" aria-label="Notifications">♧<i></i></button><button class="avatar">E</button><strong>Emamul</strong><span>⌄</span></div>
+    </header>
+
+    <div class="page-heading"><h1>Profile & Preferences</h1><p>Manage your account, location, interests and recommendation preferences.</p></div>
+
+    <section class="top-grid">
+      <article class="panel profile-panel">
+        <div class="panel-heading"><h2><span class="heading-icon">♟</span>Profile Information</h2><button class="small-action" id="saveProfile">Save Changes</button></div>
+        <div class="profile-content">
+          <div class="profile-avatar-area"><div class="big-avatar" id="avatarLetter">E</div><button class="photo-button" id="changePhoto">◎ Change Photo</button><input id="photoInput" type="file" accept="image/*" hidden></div>
+          <div class="profile-fields">
+            <label><span>Full Name</span><input id="fullName" value="Emamul Islam"><button class="edit-field" data-field="fullName" aria-label="Edit name">✎</button></label>
+            <label><span>Email Address</span><input id="email" type="email" value="emamul@example.com"></label>
+            <label><span>Phone Number</span><input id="phone" type="tel" value="+91 98765 43210"></label>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel location-panel">
+        <div class="panel-heading"><h2><span class="heading-icon">♟</span>Your Location</h2><button class="small-action" id="detectLocation">Detect Current Location</button></div>
+        <p class="panel-subtitle">ⓘ Set your location to get relevant political information.</p>
+        <div class="location-content">
+          <div class="location-fields">
+            <label>Country<select id="countrySelect"><option>India</option></select></label>
+            <label>State<select id="stateSelect"></select></label>
+            <label>District / City<select id="districtSelect"></select></label>
+            <label>Constituency<select id="constituencySelect"><option>Haveli</option><option>Pune</option><option>Shirur</option><option>Baramati</option><option>Other / Not sure</option></select></label>
+            <label>Ward<select id="wardSelect"><option>Ward 32</option><option>Ward 1</option><option>Ward 12</option><option>Ward 24</option><option>Other / Not sure</option></select></label>
+          </div>
+          <div class="location-map"><div class="mini-india"><i class="map-mark"></i></div><span class="map-label" id="mapLabel">● Pune</span><button id="changeOnMap" class="small-action">Change on Map →</button></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="middle-grid">
+      <div class="left-column">
+        <article class="panel interests-panel">
+          <div class="panel-heading"><div><h2><span class="heading-icon">▦</span>Political Interests</h2><p class="panel-subtitle">Select topics you are interested in to get personalized recommendations.</p></div><button class="small-action" id="saveInterests">Save Preferences</button></div>
+          <div class="interest-grid" id="interestGrid">
+            <button class="interest selected" data-interest="Elections"><span class="interest-icon purple-bg">▤</span>Elections<i>✓</i></button>
+            <button class="interest" data-interest="Governance"><span class="interest-icon slate-bg">♜</span>Governance<i>✓</i></button>
+            <button class="interest selected" data-interest="Education"><span class="interest-icon purple-bg">▱</span>Education<i>✓</i></button>
+            <button class="interest" data-interest="Economy"><span class="interest-icon slate-bg">▥</span>Economy<i>✓</i></button>
+            <button class="interest" data-interest="Healthcare"><span class="interest-icon red-bg">♥</span>Healthcare<i>✓</i></button>
+            <button class="interest selected" data-interest="Infrastructure"><span class="interest-icon blue-bg">♜</span>Infrastructure<i>✓</i></button>
+            <button class="interest" data-interest="Environment"><span class="interest-icon green-bg">♧</span>Environment<i>✓</i></button>
+            <button class="interest" data-interest="Technology"><span class="interest-icon purple-bg">▦</span>Technology<i>✓</i></button>
+            <button class="interest" data-interest="Foreign Policy"><span class="interest-icon cyan-bg">◎</span>Foreign Policy<i>✓</i></button>
+            <button class="interest" data-interest="Social Welfare"><span class="interest-icon cyan-bg">♟</span>Social Welfare<i>✓</i></button>
+            <button class="interest" data-interest="Law & Order"><span class="interest-icon blue-bg">♢</span>Law & Order<i>✓</i></button>
+            <button class="interest" data-interest="Agriculture"><span class="interest-icon green-bg">♣</span>Agriculture<i>✓</i></button>
+          </div>
+        </article>
+
+        <article class="panel recommendation-panel">
+          <div class="panel-heading"><div><h2><span class="heading-icon">▣</span>Recommendation Preferences</h2><p class="panel-subtitle">Customize how you want to receive political information.</p></div></div>
+          <div class="toggle-grid">
+            <div class="toggle-item"><span class="toggle-icon violet-bg">♟</span><div><b>Personalized recommendations</b><p>Show suggestions based on your interests and activity.</p></div><label class="switch"><input type="checkbox" checked><span></span></label></div>
+            <div class="toggle-item"><span class="toggle-icon blue-bg">◉</span><div><b>Diverse perspectives</b><p>Include multiple viewpoints and different angles.</p></div><label class="switch"><input type="checkbox" checked><span></span></label></div>
+            <div class="toggle-item"><span class="toggle-icon red-bg">♥</span><div><b>Local political information</b><p>Prioritize news and developments from your region.</p></div><label class="switch"><input type="checkbox" checked><span></span></label></div>
+            <div class="toggle-item"><span class="toggle-icon orange-bg">♟</span><div><b>Breaking updates</b><p>Notify about important and high-priority developments.</p></div><label class="switch"><input type="checkbox" checked><span></span></label></div>
+            <div class="toggle-item"><span class="toggle-icon teal-bg">✉</span><div><b>Email notifications</b><p>Receive daily or weekly summaries via email.</p></div><label class="switch"><input type="checkbox"><span></span></label></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="right-column">
+        <article class="panel geo-interests-panel">
+          <div class="panel-heading"><div><h2><span class="heading-icon">✿</span>Geographic Interests</h2><p class="panel-subtitle">Choose additional regions to follow (beyond your primary location).</p></div><button class="small-action" id="manageRegions">Manage</button></div>
+          <div class="chips" id="regionChips"><button data-region="Maharashtra">Maharashtra <b>×</b></button><button data-region="Delhi">Delhi <b>×</b></button><button data-region="West Bengal">West Bengal <b>×</b></button><button data-region="India (National)">India (National) <b>×</b></button></div>
+          <div class="region-search"><span>⌕</span><input id="regionSearch" placeholder="Search and add state, district or constituency..."><select id="regionAddSelect" aria-label="Add region"><option value="">Choose region to add...</option></select></div>
+        </article>
+
+        <article class="panel saved-panel">
+          <div class="panel-heading"><div><h2><span class="heading-icon">♟</span>Saved Topics</h2><p class="panel-subtitle">Manage your saved topics and get notifications for updates.</p></div><button class="small-action" id="viewSaved">View All</button></div>
+          <div class="saved-topic-grid">
+            <div class="saved-topic"><span class="saved-icon green-bg">▤</span><div><b>Indian Elections</b><small>12 new updates</small></div><button class="bell" aria-label="Toggle Indian Elections notifications">♧</button></div>
+            <div class="saved-topic"><span class="saved-icon green-bg">♜</span><div><b>Maharashtra Politics</b><small>8 new updates</small></div><button class="bell" aria-label="Toggle Maharashtra Politics notifications">♧</button></div>
+            <div class="saved-topic"><span class="saved-icon purple-bg">▱</span><div><b>Education Policy</b><small>5 new updates</small></div><button class="bell" aria-label="Toggle Education Policy notifications">♧</button></div>
+          </div>
+        </article>
+
+        <article class="panel knowledge-panel">
+          <div class="panel-heading"><div><h2><span class="heading-icon">▣</span>Knowledge Consumption Preferences</h2><p class="panel-subtitle">Set your default depth level for understanding political issues.</p></div></div>
+          <div class="knowledge-grid">
+            <button class="knowledge-card selected" data-mode="2 Minutes"><span class="knowledge-check">✓</span><span class="knowledge-icon green-bg">◷</span><b>2 Minutes</b><strong>Quick Summary</strong><small>Key facts, what happened and why it matters.</small></button>
+            <button class="knowledge-card" data-mode="10 Minutes"><span class="knowledge-check">✓</span><span class="knowledge-icon blue-bg">▤</span><b>10 Minutes</b><strong>Detailed Context</strong><small>Background, key stakeholders and multiple perspectives.</small></button>
+            <button class="knowledge-card" data-mode="1 Hour"><span class="knowledge-check">✓</span><span class="knowledge-icon purple-bg">▱</span><b>1 Hour</b><strong>Deep Dive</strong><small>Complete analysis, timeline, impact and related issues.</small></button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="bottom-grid" id="settings">
+      <article class="panel privacy-panel">
+        <div class="panel-heading"><div><h2><span class="heading-icon">♟</span>Privacy & Data</h2><p class="panel-subtitle">Manage your data, privacy settings and what information is used for recommendations.</p></div></div>
+        <div class="privacy-grid">
+          <div class="privacy-left">
+            <div class="toggle-item"><span class="toggle-icon blue-bg">♟</span><div><b>Use my data for personalization</b><p>Allow us to use your activity and preferences to improve recommendations.</p></div><label class="switch"><input type="checkbox" checked><span></span></label></div>
+            <div class="toggle-item"><span class="toggle-icon orange-bg">♧</span><div><b>Show anonymized activity data</b><p>Help improve the platform with anonymous usage data.</p></div><label class="switch"><input type="checkbox"><span></span></label></div>
+          </div>
+          <div class="privacy-actions">
+            <button data-action="View My Data"><span class="action-icon blue-bg">♧</span><span><b>View My Data</b><small>See what data is stored about you.</small></span><strong>›</strong></button>
+            <button data-action="Delete My Data"><span class="action-icon red-bg">▣</span><span><b>Delete My Data</b><small>Permanently delete your account and data.</small></span><strong>›</strong></button>
+          </div>
+        </div>
+      </article>
+      <article class="panel account-panel">
+        <div class="panel-heading"><h2><span class="heading-icon">⚙</span>Account Settings</h2></div>
+        <div class="account-actions">
+          <button data-action="Change Password"><span class="action-icon blue-bg">▣</span><span><b>Change Password</b><small>Update your account password.</small></span><strong>›</strong></button>
+          <button data-action="Connected Accounts"><span class="action-icon blue-bg">↗</span><span><b>Connected Accounts</b><small>Manage linked accounts (Google, etc.).</small></span><strong>›</strong></button>
+          <button data-action="Language & Region"><span class="action-icon blue-bg">◎</span><span><b>Language & Region</b><small>Set your preferred language and region.</small></span><strong>›</strong></button>
+        </div>
+      </article>
+    </section>
+    <div class="toast" id="toast" role="status"></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PolitiView India — Impact & Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<a class="brand" href="#"><span class="brand-icon">♜</span><span><strong>Politi<span>View</span></strong><small>AI-Powered Political Intelligence</small></span></a>
+<nav class="nav-main"><a href="#"><i>⌂</i>Home</a><a href="#"><i>◉</i>Explore</a><a href="#"><i>▤</i>Political Issues</a><a href="#"><i>◉</i>Perspective Lens</a><a href="#"><i>⌖</i>My Region</a><a class="active" href="#"><i>▥</i>Impact & Insights</a><a href="#"><i>⚑</i>Saved Topics</a></nav>
+<div class="nav-label">MY TOPICS</div>
+<nav class="topic-nav"><a href="#">▣ <span>Maharashtra</span></a><a href="#">♙ <span>Elections</span></a><a href="#">▣ <span>Education</span></a><a href="#">▣ <span>Infrastructure</span></a><a href="#">▣ <span>National Politics</span></a><a href="#">▣ <span>Local News</span></a></nav>
+<nav class="bottom-nav"><a href="#">♟ <span>Profile</span></a><a href="#">⚙ <span>Settings</span></a></nav>
+</aside>
+<main class="main">
+<header class="topbar"><label class="global-search"><span>⌕</span><input id="globalSearch" placeholder="Search issues, people, locations or topics..."></label><div class="user-actions"><button class="notification" id="notifications" aria-label="Notifications">♧<i></i></button><button class="user-avatar">E</button><strong>Emamul</strong><span>⌄</span></div></header>
+<div class="content">
+<div class="page-heading"><div><h1>Impact &amp; Insights</h1><p>See the bigger picture. Understand which political developments matter most, their impact, and emerging trends.</p></div><div class="top-filters"><label><span>⌖</span><select id="regionSelect" aria-label="Select Indian state or union territory">
+<option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option><option>Chhattisgarh</option><option>Goa</option><option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option><option>Madhya Pradesh</option><option selected>Maharashtra</option><option>Manipur</option><option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Punjab</option><option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option><option>Andaman and Nicobar Islands</option><option>Chandigarh</option><option>Dadra and Nagar Haveli and Daman and Diu</option><option>Delhi</option><option>Jammu and Kashmir</option><option>Ladakh</option><option>Lakshadweep</option><option>Puducherry</option>
+</select></label><label><span>▦</span><select id="periodSelect"><option>Last 30 Days</option><option>Last 7 Days</option><option>Last 90 Days</option><option>This Year</option></select></label></div></div>
+<nav class="tabs" role="tablist"><button class="tab active" data-tab="Overview">Overview</button><button class="tab" data-tab="Impact Analysis">Impact Analysis</button><button class="tab" data-tab="Trends">Trends</button><button class="tab" data-tab="Regional Comparison">Regional Comparison</button><button class="tab" data-tab="Topic Insights">Topic Insights</button></nav>
+<section class="stats-grid">
+<article class="stat-card"><span class="stat-icon blue">▤</span><div><strong id="totalStat">426</strong><small>Total Political Developments</small></div><b class="growth">↑ 18%</b></article>
+<article class="stat-card"><span class="stat-icon red">♨</span><div><strong id="highStat">78</strong><small>High Impact Issues</small></div><b class="growth">↑ 25%<small>vs previous 30 days</small></b></article>
+<article class="stat-card"><span class="stat-icon purple">♟</span><div><strong>56</strong><small>Key Policy Decisions</small></div><b class="growth">↑ 12%<small>vs previous 30 days</small></b></article>
+<article class="stat-card"><span class="stat-icon green">♜</span><div><strong>24</strong><small>Major Political Events</small></div><b class="growth">↑ 9%<small>vs previous 30 days</small></b></article>
+</section>
+<section class="top-analytics">
+<article class="panel pareto-panel"><div class="panel-heading"><div><h2>Pareto Analysis: Political Impact Distribution <button class="info-btn" id="paretoInfo">ⓘ</button></h2><p>A small number of issues contribute to a large portion of overall political impact.</p></div><select id="topN"><option value="20">Top 20 Issues</option><option value="10">Top 10 Issues</option><option value="15">Top 15 Issues</option></select></div>
+<div class="chart-legend"><span><i class="legend-bar"></i>Individual Impact Score</span><span><i class="legend-line"></i>Cumulative Impact</span></div><div class="pareto-chart" id="paretoChart" role="img" aria-label="Pareto chart of issue impact scores"></div></article>
+<article class="panel map-panel">
+<div class="panel-heading"><div><h2>Impact by Geography <button class="info-btn" id="mapInfo" aria-label="Geography map information">ⓘ</button></h2><p class="map-subtitle" id="mapSubtitle">Indian state boundaries · Select a state to inspect its impact</p></div></div>
+<div class="geo-tabs" role="tablist" aria-label="Geographic level">
+<button class="active" data-geo="State" aria-selected="true">State</button><button data-geo="District" aria-selected="false">District</button><button data-geo="Constituency" aria-selected="false">Constituency</button><button data-geo="Ward" aria-selected="false">Ward</button>
+</div>
+<div class="map-area">
+<div id="impactMap" class="impact-map" role="application" aria-label="Interactive map of India and political impact by geography"></div>
+<div class="map-tooltip" id="mapTooltip"><b id="mapRegion">Maharashtra</b><span>Total Issues: <strong id="mapTotal">42</strong></span><span>High Impact: <strong id="mapHigh">11</strong></span><span>Impact Score: <strong id="mapScore">78</strong></span></div>
+<div class="map-legend" id="mapLegend"><span><i class="dot dark"></i>High impact</span><span><i class="dot mid"></i>Moderate impact</span><span><i class="dot light"></i>Low impact</span><span><i class="dot pale"></i>Minimal impact</span></div>
+<div class="map-status" id="mapStatus" aria-live="polite">Loading verified state boundaries…</div>
+</div>
+</article>
+</section>
+<section class="bottom-grid">
+<article class="panel high-issues"><div class="panel-heading"><h2>Top High-Impact Issues</h2><button class="link-btn" id="viewAllIssues">View All →</button></div>
+<div class="impact-item" data-topic="Infrastructure"><span class="rank red">1</span><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=180&q=75" alt=""><div class="item-text"><b>Pune Metro Phase 2 approval</b><small>Maharashtra　•　Infrastructure</small></div><strong class="item-score">92</strong><em class="high">High</em></div>
+<div class="impact-item" data-topic="Education"><span class="rank orange">2</span><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=180&q=75" alt=""><div class="item-text"><b>New education policy in Maharashtra</b><small>Maharashtra　•　Education</small></div><strong class="item-score">87</strong><em class="high">High</em></div>
+<div class="impact-item" data-topic="Environment"><span class="rank blue">3</span><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=180&q=75" alt=""><div class="item-text"><b>Water policy for drought-prone districts</b><small>Maharashtra　•　Environment</small></div><strong class="item-score">81</strong><em class="high">High</em></div>
+<div class="impact-item" data-topic="Elections"><span class="rank gray">4</span><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=180&q=75" alt=""><div class="item-text"><b>Local body elections schedule</b><small>Maharashtra　•　Elections</small></div><strong class="item-score">76</strong><em class="medium">Medium</em></div>
+<div class="impact-item" data-topic="Economy"><span class="rank gray">5</span><img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=180&q=75" alt=""><div class="item-text"><b>Industrial policy for MSME growth</b><small>Maharashtra　•　Economy</small></div><strong class="item-score">71</strong><em class="medium">Medium</em></div>
+</article>
+<article class="panel topic-impact"><div class="panel-heading"><h2>Topic-wise Impact</h2></div><div id="topicBars" class="topic-bars"></div></article>
+<div class="right-bottom"><article class="panel trends-panel"><div class="panel-heading"><h2>Impact Trends Over Time</h2><select id="trendPeriod"><option>Last 30 Days</option><option>Last 7 Days</option><option>Last 90 Days</option></select></div><div class="trend-legend"><span><i class="red-dot"></i>High Impact</span><span><i class="blue-dot"></i>Medium Impact</span><span><i class="green-dot"></i>Low Impact</span></div><div class="line-chart" id="lineChart" role="img" aria-label="Impact trends over time"></div></article>
+<article class="panel key-insights"><div class="panel-heading"><h2><span class="bulb">☀</span> Key Insights</h2></div><div class="insight-pills"><div><span class="section-icon blue">▥</span><p>Infrastructure and Elections account for 42% of total political impact in Maharashtra.</p></div><div><span class="section-icon green">↑</span><p>High-impact issues increased by 25% compared to the previous 30 days.</p></div><div><span class="section-icon purple">♟</span><p>Pune district has the highest concentration of impactful developments.</p></div></div></article></div>
+</section>
+<div class="empty-state" id="emptyState" hidden>No issues match this view.</div>
+</div>
+</main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="app.js"></script>
+</body></html>

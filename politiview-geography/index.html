@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PolitiView — Explore by Geography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <a class="brand" href="#"><span class="logo">♜</span><span><b>Politi<span>View</span></b><small>AI-Powered Political Intelligence</small></span></a>
+  <nav class="nav">
+    <a href="#"><i>◆</i>Home</a><a class="active" href="#"><i>◉</i>Explore</a><a href="#"><i>◉</i>Perspective Lens</a><a href="#"><i>⌖</i>My Region</a><a href="#"><i>⚑</i>Saved Topics</a>
+  </nav>
+  <div class="nav-label">MY TOPICS</div>
+  <nav class="topics"><a href="#"><i>▣</i>Maharashtra</a><a href="#"><i>♙</i>Elections</a><a href="#"><i>▣</i>Education</a><a href="#"><i>▣</i>Infrastructure</a><a href="#"><i>▣</i>National Politics</a><a href="#"><i>▣</i>Local News</a></nav>
+  <nav class="bottom"><a href="#"><i>●</i>Profile</a><a href="#"><i>⚙</i>Settings</a></nav>
+</aside>
+<main class="main">
+<header class="topbar"><label class="search"><span>⌕</span><input id="search" placeholder="Search issues, people, locations or topics..."></label><div class="user"><button class="bell">♧<i></i></button><button class="avatar">E</button><b>Emamul</b><span>⌄</span></div></header>
+<section class="page-heading"><div><h1>Explore by Geography</h1><p>Discover political developments at every level — from country to ward.</p></div></section>
+
+<section class="top-grid">
+<article class="panel location-panel"><h3>Select Location</h3><div class="location-steps">
+  <div class="step"><label>Country</label><select><option>🇮🇳　India</option></select></div>
+  <div class="step"><label>State</label><select><option>✿　Maharashtra</option><option>Gujarat</option><option>Karnataka</option></select></div>
+  <div class="step"><label>District</label><select><option>♥　Pune</option><option>Mumbai</option><option>Nashik</option></select></div>
+  <div class="step"><label>Constituency</label><select><option>♣　Haveli</option><option>Shivajinagar</option></select></div>
+  <div class="step"><label>Ward</label><select><option>📍　Ward 32</option><option>Ward 31</option></select></div>
+</div></article>
+
+<article class="panel map-panel"><div class="map-toolbar"><div class="tabs"><button class="active" data-view="map">♧ Map View</button><button data-view="list">☷ List View</button></div><label class="map-search">⌕ <input id="mapSearch" placeholder="Search location on map..."></label></div>
+<div class="map-canvas" id="mapCanvas">
+  <div id="indiaMap" class="real-map" role="application" aria-label="Interactive map of India focused on Maharashtra and Pune"></div>
+  <div class="map-legend"><span><i class="activity-high"></i>High activity</span><span><i class="activity-med"></i>Moderate activity</span><span><i class="activity-low"></i>Low activity</span></div>
+  <div class="list-view hidden" id="mapList"><b>Locations in Maharashtra</b><button data-city="Pune">Pune — 5 active issues</button><button data-city="Mumbai">Mumbai — 8 active issues</button><button data-city="Nashik">Nashik — 3 active issues</button><button data-city="Nagpur">Nagpur — 4 active issues</button></div>
+</div></article>
+
+<div class="right-column">
+<article class="panel district-panel"><div class="district-cover"><div><h2>Pune, Maharashtra</h2><p>District　•　21 Constituencies　•　144 Wards</p></div><img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=420&q=80" alt="Government building"></div>
+<div class="stats"><div class="stat"><span class="stat-icon blue">▤</span><div><b>128</b><small>Active Political Issues</small><strong class="green">↑ 12%</strong></div></div><div class="stat"><span class="stat-icon red">♨</span><div><b>24</b><small>High Priority</small><strong class="red-text">↑ 8%</strong></div></div><div class="stat"><span class="stat-icon green">♟</span><div><b>18</b><small>Key Representatives</small></div></div><div class="stat"><span class="stat-icon purple">▣</span><div><b>6</b><small>Major Events</small><strong class="green">↑ 3%</strong></div></div></div></article>
+<article class="panel quick-links"><h3>Quick Links</h3><div class="quick-grid"><button><span class="quick-icon purple">♟</span>View Constituencies</button><button><span class="quick-icon blue">◷</span>View Wards</button><button><span class="quick-icon green">♙</span>Local Representatives</button><button><span class="quick-icon orange">▣</span>Recent Developments</button></div></article>
+</div>
+</section>
+
+<section class="issues-panel panel">
+<div class="filterbar"><label class="filter location-filter">📍 <select><option>Pune, Maharashtra</option><option>Mumbai, Maharashtra</option><option>Nashik, Maharashtra</option></select></label><select><option>All Topics</option><option>Infrastructure</option><option>Environment</option><option>Education</option></select><select><option>All Categories</option><option>Governance</option><option>Public Services</option></select><select><option>All Priorities</option><option>High</option><option>Medium</option><option>Low</option></select><select><option>All Time</option><option>Past 24 hours</option><option>Past week</option></select><div class="view-toggle"><button class="active" data-layout="list">☷ List</button><button data-layout="grid">▦ Grid</button></div></div>
+<div class="issues-heading"><div><h2>Political Issues in Pune</h2><p>Latest and important political developments in the selected region.</p></div><div class="sort"><span>128 issues found</span><select><option>Most Relevant</option><option>Newest First</option><option>Highest Priority</option></select></div></div>
+<div class="issue-list" id="issueList">
+<article class="issue"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=400&q=80" alt="Metro train"><span class="priority high">HIGH</span><div class="issue-copy"><h3>Pune Metro Phase 2 gets state approval</h3><p>Maharashtra government approves Pune Metro Phase 2, expected to improve connectivity across key areas.</p><div class="issue-meta"><span>⌖ Pune</span><span>◷ 5 hours ago</span><em class="tag infrastructure">Infrastructure</em><span>▤ The Times of India</span></div></div><button class="bookmark" aria-label="Save issue">♧</button><button class="details">View Details　→</button></article>
+<article class="issue"><img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=400&q=80" alt="Government building"><span class="priority medium">MEDIUM</span><div class="issue-copy"><h3>Pune Municipal Corporation proposes new solid waste policy</h3><p>PMC places new solid waste management policy for discussion, focusing on segregation and recycling.</p><div class="issue-meta"><span>⌖ Pune</span><span>◷ 12 hours ago</span><em class="tag environment">Environment</em><span>▤ Hindustan Times</span></div></div><button class="bookmark" aria-label="Save issue">♧</button><button class="details">View Details　→</button></article>
+<article class="issue"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=400&q=80" alt="Students in a discussion"><span class="priority low">LOW</span><div class="issue-copy"><h3>New education policy implementation in Pune district</h3><p>Pune district administration outlines plan for implementing updated state education policy in government schools.</p><div class="issue-meta"><span>⌖ Pune</span><span>◷ 1 day ago</span><em class="tag education">Education</em><span>▤ Indian Express</span></div></div><button class="bookmark" aria-label="Save issue">♧</button><button class="details">View Details　→</button></article>
+</div>
+</section>
+<div class="toast" id="toast"></div>
+</main>
+</div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="app.js"></script>
+</body></html>
